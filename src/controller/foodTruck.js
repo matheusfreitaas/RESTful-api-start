@@ -49,7 +49,10 @@ export default({config, db}) => {
             res.send(err);
          }
          foodTruck.name = req.body.name;
-
+         foodTruck.foodType = req.body.foodType;
+         foodTruck.averageCost = req.body.averageCost;
+         foodTruck.geometry.coordinates = req.body.geometry.coordinates;
+   
          foodTruck.save(err => {
             if (err){
                res.send(err);
