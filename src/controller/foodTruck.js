@@ -3,11 +3,13 @@ import {Router} from 'express';
 import FoodTruck from '../model/foodTruck';
 import Review from '../model/review';
 
+import {authenticate} from '../middleware/authMiddleware';
+
 export default({config, db}) => {
    let api = Router();
 
    // 'v1/foodTruck/add'
-   api.post('/add', (req, res) => {
+   api.post('/add',authenticate, (req, res) => {
       let newFoodTruck = new FoodTruck();
       newFoodTruck.name = req.body.name;
       newFoodTruck.foodType = req.body.foodType;
